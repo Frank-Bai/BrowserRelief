@@ -1,0 +1,78 @@
+.recordButton {
+	-moz-box-shadow: 0px 3px 0px 0px #f29c93;
+	-webkit-box-shadow: 0px 3px 0px 0px #f29c93;
+	box-shadow: 0px 3px 0px 0px #f29c93;
+	background-color:#fe1a00;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	border:2px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:18px;
+	padding:8px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.recordButton:hover {
+	background-color:#ce0100;
+}
+.recordButton:active {
+	position:relative;
+	top:1px;
+}
+
+.reopenButton {
+	-moz-box-shadow: 0px 3px 0px 0px #3dc21b;
+	-webkit-box-shadow: 0px 3px 0px 0px #3dc21b;
+	box-shadow: 0px 3px 0px 0px #3dc21b;
+	background-color:#44c767;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	border:2px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:18px;
+	padding:8px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.reopenButton:hover {
+	background-color:#5cbf2a;
+}
+.reopenButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.deleteRecords {
+	-moz-box-shadow: 0px 3px 0px 0px #e79c93;
+	-webkit-box-shadow: 0px 3px 0px 0px #e79c93;
+	box-shadow: 0px 3px 0px 0px #e79c93;
+	background-color:#fe1a00;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	border:2px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:18px;
+	padding:8px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.deleteRecords:hover {
+	background-color:#c60100;
+}
+.deleteRecords:active {
+	position:relative;
+	top:1px;
+}

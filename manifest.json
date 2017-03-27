@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "BrowserRelief",
-  "version": "1.0",
+  "version": "2.0",
 
 
   "description": "It records the tabs opening now and help you re-open them when Chrome restarted.",
@@ -17,7 +17,7 @@
           
 
 
-  "author": "Frank Bai",
+  "author": "Yifan Bai & Baian Chen",
 
 
   "permissions": [

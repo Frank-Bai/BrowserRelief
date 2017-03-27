@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var reloadBtn = document.getElementById('reloadBtn');
     var selection = document.getElementById('myUL');
 
-    var listObjArray = []; // the array of list objects
+    var listObjArray = [undefined,undefined,undefined,undefined]; // the array of list objects
 
     var numOfLists = 0;
     var toDelete = false;
-    var LIST_NUM_LIMIT = 4;
+    const LIST_NUM_LIMIT = 4;
 
     /*
     * the format of the list objects stored
@@ -21,6 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
     *
     * and they are stored with tags BrowserReliefURLs1 2,3,4
     * */
+
+    /*
+     * the format of the options:
+     *
+     * innerHTML : the list name (displayed) of the list
+     * value : the tag index of the option, used to do record, reload (array index+1)
+     * (i.e. 1/2/3/4)
+     *
+     * */
+
+
+    function find1stFreeTag() {
+        for(var i = 0; i < LIST_NUM_LIMIT; i++){
+            if (listObjArray[i] == undefined){
+                return i+1;
+            }
+        }
+        return LIST_NUM_LIMIT+1;
+    }
+
+
 
     // load the objects information and update the page
     // loop through the lists by recursion
@@ -33,31 +54,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (items[tagName] != undefined){
                     var listObj = items[tagName];
                     // put into the global var array
-                    listObjArray.push(listObj);
+                    listObjArray[i-1] = listObj;
                     // create new element in html
                     var opt = document.createElement('option');
                     opt.innerHTML = listObj.listName;
+                    opt.value = i; // the tag index
                     selection.appendChild(opt);
+
+                    // increment the number of the list counter
+                    numOfLists++;
                     loadLists(i+1)
                 }
                 else {
-                    numOfLists = listObjArray.length;
-                    // update the input box
-                    input.value = 'defaultList' + (numOfLists+1).toString();
-                    if (numOfLists > 0) {
-                        selection.selectedIndex = 0;
-                        selection.focus();
-                    }
+                    loadLists(i+1)
                 }
             });
         }
         else{
-            // already full
-            numOfLists = 4;
-            input.value = "already full!";
+            // reached the end
+            if (numOfLists == 4){
+                input.value = "already full!";
+            }
+            else{
+                input.value = 'defaultList' + find1stFreeTag().toString();
+            }
             // set the focus to selection list
             selection.selectedIndex = 0;
             selection.focus();
+
         }
 
     }
@@ -74,14 +98,17 @@ document.addEventListener('DOMContentLoaded', function() {
         else{
             // and set the name of the list as the one in input
             var newListName = input.value;
+            // the tag index about to be used
+            var tagNumber = find1stFreeTag();
             // create a new option entry
             var opt = document.createElement('option');
             opt.innerHTML = newListName;
+            opt.value = tagNumber; // the tag index
             selection.appendChild(opt);
             numOfLists++;
 
             // ready to set the new list object
-            var tagName = 'BrowserReliefURLs' + (numOfLists).toString();
+            var tagName = 'BrowserReliefURLs' + (tagNumber).toString();
             var tagObj = new Object;
 
             toDelete = false; // disable delete
@@ -104,10 +131,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     output.textContent = newListName + " list created and current tabs recorded";
                 });
                 // also update the local array
-                listObjArray.push(tagObj[tagName]);
+                listObjArray[tagNumber-1] = tagObj[tagName];
+
+                // update the input box
+                if (numOfLists >= 4){
+                    input.value = "already full!";
+                }
+                else{
+                    input.value = 'defaultList' + (find1stFreeTag()).toString();
+                }
             });
-            // update the input box
-            input.value = 'defaultList' + (numOfLists+1).toString();
+
 
         }
 
@@ -117,25 +151,31 @@ document.addEventListener('DOMContentLoaded', function() {
     dltLstBtn.addEventListener('click', function () {
         if (toDelete){
             var dltIndex = selection.selectedIndex;
+            var dltTagIndex = selection.options[dltIndex].value;
             var dltName = selection.options[dltIndex].innerHTML;
-            var dltTagName = 'BrowserReliefURLs' + (dltIndex+1).toString()
+            var dltTagName = 'BrowserReliefURLs' + (dltTagIndex).toString()
 
-            selection.remove(dltIndex);
             // remove the object in chrome storage
             chrome.storage.sync.remove(dltTagName, function() {
+
+                selection.remove(dltIndex); // remove the html option
+
+                // also remove the object in list object array
+                listObjArray[dltTagIndex-1] = undefined;
+                numOfLists--;
+
+                // update the input box
+                input.value = 'defaultList' + (find1stFreeTag()).toString();
+
+                toDelete = false; // reset the bool
                 output.textContent = dltName + "deleted";
+
+                if (numOfLists > 0){
+                    // set the focus to selection list
+                    selection.selectedIndex = 0;
+                    selection.focus();
+                }
             });
-            // also remove the object in list object array
-            listObjArray.remove(dltIndex);
-            numOfLists--;
-            // update the input box
-            input.value = 'defaultList' + (numOfLists+1).toString();
-            if (numOfLists > 0){
-                // set the focus to selection list
-                selection.selectedIndex = 0;
-                selection.focus();
-            }
-            toDelete = false; // reset the bool
         }
         else{
             toDelete = true;
@@ -146,9 +186,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     recordBtn.addEventListener('click', function () {
+
         var recIndex = selection.selectedIndex;
+        var recTagIndex = selection.options[recIndex].value;
         var recName = selection.options[recIndex].innerHTML;
-        var recTagName = 'BrowserReliefURLs' + (recIndex+1).toString()
+        var recTagName = 'BrowserReliefURLs' + (recTagIndex).toString()
 
         // ready to set the new list object
         var tagObj = new Object;
@@ -173,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 output.textContent = "tabs recorded, written to " + recName;
             });
             // also update the local array
-            listObjArray[recIndex] = tagObj[recTagName];
+            listObjArray[recTagIndex] = tagObj[recTagName];
         });
 
     },false);
@@ -181,8 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     reloadBtn.addEventListener('click', function () {
         var reloadIndex = selection.selectedIndex;
+        var rldTagIndex = selection.options[reloadIndex].value;
         var reloadName = selection.options[reloadIndex].innerHTML;
-        var URLsArray = listObjArray[reloadIndex].urlArray;
+        var URLsArray = listObjArray[rldTagIndex].urlArray;
         for (var url in URLsArray) {
             chrome.tabs.create({url:URLsArray[url]}); // open tabs
         }

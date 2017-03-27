@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
      *
      * */
 
-
     function find1stFreeTag() {
         for(var i = 0; i < LIST_NUM_LIMIT; i++){
             if (listObjArray[i] == undefined){
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return LIST_NUM_LIMIT+1;
     }
-
 
 
     // load the objects information and update the page
@@ -128,18 +126,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 // the chrome storage set
                 chrome.storage.sync.set(tagObj, function() {
-                    output.textContent = newListName + " list created and current tabs recorded";
-                });
-                // also update the local array
-                listObjArray[tagNumber-1] = tagObj[tagName];
+                    // also update the local array
+                    listObjArray[tagNumber-1] = tagObj[tagName];
 
-                // update the input box
-                if (numOfLists >= 4){
-                    input.value = "already full!";
-                }
-                else{
-                    input.value = 'defaultList' + (find1stFreeTag()).toString();
-                }
+                    // update the input box
+                    if (numOfLists >= 4){
+                        input.value = "already full!";
+                    }
+                    else{
+                        input.value = 'defaultList' + (find1stFreeTag()).toString();
+                    }
+                    output.textContent = newListName + " list created and current tabs recorded";
+                    // set the focus to selection list
+                    selection.selectedIndex = 0;
+                    selection.focus();
+                });
+
             });
 
 
@@ -225,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var reloadIndex = selection.selectedIndex;
         var rldTagIndex = selection.options[reloadIndex].value;
         var reloadName = selection.options[reloadIndex].innerHTML;
-        var URLsArray = listObjArray[rldTagIndex].urlArray;
+        var URLsArray = listObjArray[rldTagIndex-1].urlArray;
         for (var url in URLsArray) {
             chrome.tabs.create({url:URLsArray[url]}); // open tabs
         }

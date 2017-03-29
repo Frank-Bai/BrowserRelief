@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var numOfLists = 0;
     var toDelete = false;
-    const LIST_NUM_LIMIT = 4;
+    const LIST_NUM_LIMIT = 8;
 
     /*
     * the format of the list objects stored
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else{
             // reached the end
-            if (numOfLists == 4){
+            if (numOfLists == LIST_NUM_LIMIT){
                 input.value = "already full!";
             }
             else{
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addLstBtn.addEventListener('click', function(){
         // if the current list number is beyond the limit
         if (numOfLists >= LIST_NUM_LIMIT){
-            output.textContent = "at most 4 lists, please delete a list first";
+            output.textContent = "at most 8 lists, please delete a list first";
         }
         else{
             // and set the name of the list as the one in input
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     listObjArray[tagNumber-1] = tagObj[tagName];
 
                     // update the input box
-                    if (numOfLists >= 4){
+                    if (numOfLists >= LIST_NUM_LIMIT){
                         input.value = "already full!";
                     }
                     else{
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.value = 'defaultList' + (find1stFreeTag()).toString();
 
                 toDelete = false; // reset the bool
-                output.textContent = dltName + "deleted";
+                output.textContent = dltName + " deleted";
 
                 if (numOfLists > 0){
                     // set the focus to selection list
@@ -185,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     },false);
-
 
     recordBtn.addEventListener('click', function () {
 

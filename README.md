@@ -18,7 +18,7 @@ Reopen the tabs recorded in the current window.
 Delete the current records.
 
 ### Advanced Mode
-For now, it only supports up to 4 lists of urls and they are independent of the list in Simple Mode. 
+For now, it only supports up to 8 lists of urls and they are independent of the list in Simple Mode. 
 ##### &nbsp;&nbsp; 4 Buttons
 * Add List
 Add a new list with list name set as the value in the input box. 

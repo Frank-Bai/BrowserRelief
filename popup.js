@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 
     advanceButton.addEventListener('click', function(){
-        window.location.href = "advance.html";
+        chrome.storage.sync.set({'BrowserReliefAdvBool' : true});
     });
 
 

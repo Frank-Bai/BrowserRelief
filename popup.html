@@ -4,34 +4,30 @@
   <title>Browser Relief</title>
   <link rel="stylesheet" type="text/css" href="popup.css">
   <style>
-body {
-  
-}
-output {
-  text-align: center;
-  padding: 1em;
-  display: block;
-}
-.center {
-    text-align: center;
-    
-}
+    body {
+      
+    }
+    output {
+      text-align: center;
+      padding: 1em;
+      display: block;
+    }
   </style>
 
 	<script src="popup.js"></script>
+
 </head> 	
 
   <body>
-    <a href="#" class="advanceButton" id="advBtn" >Advance</a>
-    <div class="center">
-      <img src="BrowserRelief_128.png" alt="Browser Relief">
-    	<br></br>
-      <a href="#" class="recordButton" id="recordTabs" >Record</a>
-    	<br></br>
-    	<a href="#" class="reopenButton" id="reopenTabs" >Reload</a>
-      <br></br>
-      <a href="#" class="deleteRecords" id="deleteRecords" ><img src="deleteCross.png" alt="Delete"></a>
-    </div>
+    <img src="logo.png" alt="Browser Relief">
+    <br></br>
+    <button class="button" id="recordTabs" style="vertical-align:middle"><span>Record </span></button>
+    <br></br>
+    <button class="button" id="reopenTabs" style="vertical-align:middle"><span>Reload </span></button>
+    <br></br>
+    <button class="button2" id="deleteRecords"><img src="deleteCross.png" alt="Delete"></button>
+    <a href="advance.html"><button class="button2" id="advBtn"><img src="advanceArrow.png" alt="Advance"> </button></a>
+
     <output></output>
   </body>
   

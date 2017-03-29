@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // button directs back to simple
     simpleBtn.addEventListener('click', function(){
         chrome.storage.sync.set({'BrowserReliefAdvBool' : false});
-        window.location.href = "popup.html";
     });
 
 

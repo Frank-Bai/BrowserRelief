@@ -1,78 +1,150 @@
-.recordButton {
-	-moz-box-shadow: 0px 3px 0px 0px #f29c93;
-	-webkit-box-shadow: 0px 3px 0px 0px #f29c93;
-	box-shadow: 0px 3px 0px 0px #f29c93;
-	background-color:#fe1a00;
-	-moz-border-radius:17px;
-	-webkit-border-radius:17px;
-	border-radius:17px;
-	border:2px solid #d83526;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Times New Roman;
-	font-size:18px;
-	padding:8px 12px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #6F4E37;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 128px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+  font-family:Comic Sans MS;
 }
-.recordButton:hover {
-	background-color:#ce0100;
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
-.recordButton:active {
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button:active {
 	position:relative;
 	top:1px;
 }
 
-.reopenButton {
-	-moz-box-shadow: 0px 3px 0px 0px #3dc21b;
-	-webkit-box-shadow: 0px 3px 0px 0px #3dc21b;
-	box-shadow: 0px 3px 0px 0px #3dc21b;
-	background-color:#44c767;
-	-moz-border-radius:17px;
-	-webkit-border-radius:17px;
-	border-radius:17px;
-	border:2px solid #18ab29;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Times New Roman;
-	font-size:18px;
-	padding:8px 12px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
+.button2 {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #0074a7;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 62px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+  font-family:Comic Sans MS;
 }
-.reopenButton:hover {
-	background-color:#5cbf2a;
+
+.button2:hover {
+  background-color: #57b3db;
 }
-.reopenButton:active {
+
+.button2:active {
 	position:relative;
 	top:1px;
 }
 
+.button3 {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #0074a7;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 128px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+  font-family:Comic Sans MS;
+}
 
-.deleteRecords {
-	-moz-box-shadow: 0px 3px 0px 0px #e79c93;
-	-webkit-box-shadow: 0px 3px 0px 0px #e79c93;
-	box-shadow: 0px 3px 0px 0px #e79c93;
-	background-color:#fe1a00;
-	-moz-border-radius:17px;
-	-webkit-border-radius:17px;
-	border-radius:17px;
-	border:2px solid #d83526;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Times New Roman;
-	font-size:18px;
-	padding:8px 12px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
+.button3:hover {
+  background-color: #57b3db;
 }
-.deleteRecords:hover {
-	background-color:#c60100;
-}
-.deleteRecords:active {
+
+.button3:active {
 	position:relative;
 	top:1px;
+}
+
+.center {
+  text-align: center;
+  
+}
+
+#nameInput {
+  display: inline-block;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 105px;
+  transition: all 0.5s;
+  margin: 0px;
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  font-family: Comic Sans MS;
+  border: 1px solid #ddd; /* Add a grey border */
+}
+
+#myUL {
+  list-style-type: none;
+  display: inline-block;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 128px;
+  height: 213px;
+  transition: all 0.5s;
+  margin: 0px;
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  font-family: Comic Sans MS;
+  border: 1px solid #ddd; /* Add a grey border */
+}
+
+#myUL option a {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+#myUL option a.header {
+  background-color: #e2e2e2; /* Add a darker background color for headers */
+  cursor: default; /* Change cursor style */
+}
+
+#myUL option a:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
 }

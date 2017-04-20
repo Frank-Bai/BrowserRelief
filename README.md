@@ -42,3 +42,6 @@ For now, it only supports up to 8 lists of urls and they are independent of the 
 * To simple
 
     Switch back to simple mode.
+
+#### Collaborators: 
+[Baian Chen](http://anchen.me)  (*[@anchen1011](https://github.com/anchen1011)*) – UI Designer in Version 2.0
